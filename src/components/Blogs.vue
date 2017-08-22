@@ -2,9 +2,21 @@
   <div>
     <h1>Blogs in VUE</h1>
 
-    <ul>
+    <div class="create">
+       <form @submit.prevent="createBlog()">
+        <input type="text" v-model="blog.title" placeholder="Title">
+        <wysiwyg v-model="blog.body" />
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form> 
+    </div>
+
+    <!-- <div>
+      <button @click="createBlog">Create New Blog</button>
+    </div> -->
+ 
+     <ul>
       <li v-for="blog in blogs">
-        <router-link :to="{name: 'Blog', params: { blogTitle:  blog.title, blogBody: blog.body } }">{{blog.title}}</router-link>
+        <router-link :to="{name: 'Blog', params: { blogId: blog._id } }">{{blog.title}} : {{blog._id}}</router-link>
       </li>
     </ul>
 
@@ -13,25 +25,44 @@
 
 <script>
   export default {
-    data(){
+    data() {
       return {
-        blogs:[{
-          title: '103 Ways to Sink Your Ship',
-          body: 'Pull the plug and more'
-        },{
-          title: '51 Ways to Float Your Boat',
-          body: 'Start with a float'
-        }]
+        blog:{
+          title:'',
+          body:''
+        }
+        // blogs:[{
+        //   title: '103 Ways to Sink Your Ship',
+        //   body: 'Pull the plug and more'
+        // },{
+        //   title: '51 Ways to Float Your Boat',
+        //   body: 'Start with a float'
+        // }]
+        //blogs: store.state.blogs
       }
     },
-    beforeCreate(){
-      console.log("WHAT IS THIS?", this.name)
+    computed: {
+      blogs() {
+        return this.$store.state.blogs
+      }
     },
-    mounted(){
-      console.log('ABOUT IS READY')
-      console.log("WHAT IS THIS?", this.name)
+    // beforeCreate() {
+    //   //store.getBlogs();
+    // },
+
+    methods: {
+      createBlog() {
+        var createdBlog = this.blog;
+        this.$store.dispatch("createBlog", createdBlog)
+      }
+    },
+
+    mounted() {
+      this.$store.dispatch('getBlogs')
     }
+
   }
+
 </script>
 
 <style></style>

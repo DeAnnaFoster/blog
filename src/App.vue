@@ -4,7 +4,6 @@
       <!-- THIS IS YOUR NEW <a> -->
       <router-link :to="{name: 'Home'}">Home</router-link>
       <router-link :to="{name: 'Blogs'}">Blogs</router-link>
-      <router-link :to="{name: 'Create'}">Create</router-link>
     </div>
     <hr>
     <router-view></router-view>
@@ -20,6 +19,8 @@
     name: 'app'
   }
 
+
+
 </script>
 
 <style>
@@ -32,8 +33,11 @@
     margin-top: 60px;
   } */
 
+   @import "~vue-wysiwyg/dist/vueWysiwyg.css";  
+
   a {
     font-size: 30px;
     color: red;
   }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>VUE WITH A ROOM IS COOL {{ test }}</h1>
+    <h1>VUE WITH A ROOM IS COOL <br/>{{ test }}</h1>
   </div>
 </template>
 
@@ -15,7 +15,7 @@
 
     //LIFECYCLE HOOKS
     mounted(){
-      console.log("WE ARE ON THE HOME PAGE NOW")
+      //console.log("WE ARE ON THE HOME PAGE NOW")
     }
     // beforeDestroy(){
     //   console.log("GOOD BYE HOME")
@@ -24,10 +24,8 @@
     //   console.log("THE HOME COMPONENT IS GONE")
     // }
 
-
-
-
   }
+
 </script>
 
 <style></style>

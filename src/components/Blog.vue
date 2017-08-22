@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Blog: {{ title }}</h1>
-    <h3>Post: {{ body }}</h3>
+    <h1>Blog: {{ blog.title }}</h1>
+    <h3>Post: {{ blog.body }}</h3>
   </div>
 </template>
 
@@ -9,13 +9,20 @@
   export default {
     data(){
       return {
-        title: this.$route.params.blogTitle,
-        body: this.$route.params.blogBody
+        // title: this.$route.params.blogTitle,
+        // body: this.$route.params.blogBody
       }
     },
     mounted(){
       // console.log('ABOUT IS READY')
       // console.log("WHAT IS THIS?", this.$route.params.blogTitle)
+      this.$store.dispatch('getBlog', this.$route.params.blogId);
+      console.log(this.$store.state.activeBlog)
+    },
+    computed:{
+      blog(){
+        return this.$store.state.activeBlog;
+      }
     }
   }
 </script>
